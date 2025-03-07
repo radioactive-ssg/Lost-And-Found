@@ -16,7 +16,6 @@ function About(){
         </p>
         <footer>
             <p>Copyright &copy; 2025</p>
-            {/* <p>Designed and Built by <a href="https://arjuncvinod.me">Arjun C Vinod</a></p> */}
         </footer>
       </section>
       
