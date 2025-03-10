@@ -3,6 +3,7 @@ import { useCallback } from "react";
 import particleconfig from "./config/particleconfig";
 // import { loadFull } from "tsparticles";
 import { loadSlim } from "tsparticles-slim";
+
 export default function Particle() {
  const particlesInit = useCallback(async (engine) => {
    console.log(engine);
