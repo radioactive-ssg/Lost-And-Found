@@ -2,6 +2,7 @@ import { useState } from "react";
 import logo from "../assets/logo.png";
 import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
+import { NavLink } from "react-router-dom";
 
 function Navbar() {
   const [active, setActive] = useState(false);
@@ -9,7 +10,7 @@ function Navbar() {
 
   function openNav() {
     setActive(true)
-   setCls("active")
+    setCls("active")
     
   }
   function closeNav(){
@@ -18,17 +19,17 @@ function Navbar() {
   }
   return (
     <nav>
-      <a href="/"><img src={logo} alt="" /></a>
+      <NavLink to="/"><img src={logo} alt="" /></NavLink>
       {/* <ul style={{ width: `${width}` }}> */}
       <ul className={cls}>
         <li>
           <a href="/">Home</a>
         </li>
         <li>
-          <a href="/find">Find item</a>
+          <NavLink to="/find">Find item</NavLink>
         </li>
         <li>
-          <a href="/post">Post item</a>
+          <NavLink to="/post">Post item</NavLink>
         </li>
         <li>
           <a href="/#about">About us</a>
