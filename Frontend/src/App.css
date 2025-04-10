@@ -1,8 +1,10 @@
 :root{
-    --yellow:#fdf004;
+    --yellow:#ffffff;
 }
 html{
+    height: 100%;
     scroll-behavior: smooth;
+    /* overflow: hidden; */
 }
 *{
     margin: 0;
@@ -12,7 +14,8 @@ html{
 }
 
 body{
-    background-color: black;
+    background-color: rgb(20, 19, 19);
+    
 }
 /* --------------------------------------------------Nav Bar ------------------------------------ */
 nav{
@@ -21,12 +24,14 @@ nav{
     align-items: center;
     justify-content: space-between;
     padding: 5px 2%;
-    background-color: rgba(0, 0, 0, 0.7);
+    /* background-color: rgba(16, 15, 15, 0.7); */
+    /* background-image: linear-gradient(to right, #434343 0%, black 100%); */
     width: 100vw;
     top: 0;
     left: 0;
     z-index: 1000;
-    backdrop-filter:blur(30px);
+    backdrop-filter:blur(60px);
+    border-bottom: 2px solid white;
 }
 nav img{
     width: 60px;
@@ -39,13 +44,13 @@ nav ul li{
 nav ul li a{
     text-decoration: none;
     font-size: 17px;
-    color: var(--yellow);
+    color: #fff;
 }
 .menu-container{
     display: none;
 }
 .menu{
-    color: var(--yellow);
+    color: #fff;
 }
 /* -----------------------------------------------home page ------------------------------------------ */
 .hero{
@@ -53,21 +58,23 @@ nav ul li a{
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    height: 94.5vh;
 }
 .hero h1{
-    color: var(--yellow);
+    color: #fff;
     font-size: 5rem;
     text-align: center;
+
+    
 }
 .hero button{
     padding: 10px 30px;
     background-color: transparent;
-    color: var(--yellow);
+    color: #fff;
     margin-top: 40px;
-    border: 2px solid var(--yellow);
+    border: 2px solid #fff;
     transition: cubic-bezier(0.445, 0.05, 0.55, 0.95) .15s;
-     border-radius: 1px;
+     border-radius: 10px;
      position: relative;
      cursor: pointer;
 }
@@ -76,11 +83,12 @@ nav ul li a{
     position: absolute;
     width: 0;
     height: 100%;
-   background-color: var(--yellow);
+   background-color: white;
    top: 0;
    left: 0;
    transition: .5s;
    z-index: -1;
+   border-radius: 8px;
 }
 .hero button:hover::after{
     width: 100%;
@@ -114,9 +122,12 @@ nav ul li a{
 }
 
 footer{
-    background-color: var(--yellow);
+    background-color: #85D8CE;
+    background-image: linear-gradient(to right, #434343 0%, black 100%);
     text-align: center;
-    padding: 10px
+    padding: 10px;
+    color:white;
+    border-top: white;
 }
 footer a{
     color: red;
@@ -601,3 +612,9 @@ nav ul li a{
     gap: 1px;
 }
 }
+
+
+ 
+.container {
+    background-image: linear-gradient(to right, #434343 0%, black 100%);
+  }
