@@ -13,9 +13,9 @@ function About(){
           public spaces, fostering a sense of community and support. We firmly
           believe that by coming together, we can increase the chances of
           reuniting lost items with their rightful owners.
-        </p>
+        </p> 
         <footer>
-            <p>Copyright &copy; 2025</p>
+        © MANIT Lost and Found Portal
         </footer>
       </section>
       
