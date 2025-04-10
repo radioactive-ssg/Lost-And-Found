@@ -5,16 +5,23 @@ function Home(){
     return (
       <main>
         <Navbar />
-        <div className="particle-container">
+        {/* <div className="container">
         <ParticlesBackground />
-        </div>
-        <div className="hero">
+        </div> */}
+        <div className="hero container">
           <h1>Lost and Found</h1>
           <a href="/find">
             <button>Find item</button>
           </a>
+         
         </div>
-        <About />
+        {/* <About /> */}
+        <div className="footer">
+          <footer>
+        © MANIT Lost and Found Portal
+        </footer>
+          </div>
+        
       </main>
     );
 } 
