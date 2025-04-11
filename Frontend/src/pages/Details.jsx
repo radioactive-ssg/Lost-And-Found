@@ -11,7 +11,6 @@ import noimg from "../assets/no-image.png";
 function Details() {
   const [item, setItem] = useState("");
   const [loading, setLoading] = useState(false);
-  const [image, setImage] = useState("");
   const { id } = useParams();
 
   // const override: CSSProperties = {
@@ -39,14 +38,6 @@ function Details() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  axios.get(`${api}/files/${item.image}`).then((res) => {
-    console.log(res);
-    setImage(`${api}/files/${item.image}`)
-  }).catch((error) => {
-        console.log(error);
-      setImage(noimg);
-    });
-
   return (
     <main id="detailspage">
       <Navbar />
@@ -64,12 +55,15 @@ function Details() {
         ) : (
           <div className="details-card">
             <div className="img-container">
-              <img src={image} alt="" />
+              <img
+                src={item.image || noimg} // Use the Cloudinary URL or fallback to noimg
+                alt={item.title || "No Image Available"}
+              />
             </div>
 
             <div className="action-container">
               <a href={`tel:${item.phoneno}`}>
-                <CallIcon />Call
+                <CallIcon /> Call
               </a>
               <a href={`mailto:${item.email}`}>
                 <EmailIcon /> Email
@@ -77,20 +71,16 @@ function Details() {
             </div>
             <h2>{item.title}</h2>
             <div className="details-container">
-              <p>Founder</p>
+              <p>Founder : </p>
               <p>{item.name}</p>
             </div>
 
-            {/* <div className="details-container">
-            <p>Email</p>
-            <p>arjuncvinod@mail.com</p>
-          </div>
-          <div className="details-container">
-            <p>Phone</p>
-            <p>8494865475</p>
-          </div> */}
+            <div className="details-container">
+              <p>Location : </p>
+              <p>{item.location || "Location not provided"}</p> {/* Display location */}
+            </div>
+
             <div className="details-container desc">
-              {/* <p>Description</p> */}
               <p>{item.description}</p>
             </div>
           </div>

@@ -12,20 +12,13 @@ export default function Post() {
   const [title, setTitle] = useState("");
   const [desc, setDesc] = useState("");
   const [file, setFile] = useState("");
+  const [location, setLocation] = useState(""); // New state for location
   const [btn, setBtn] = useState(true);
-  const [isHovered, setIsHovered] = useState(null);
   const navigate = useNavigate();
   const { enqueueSnackbar } = useSnackbar();
 
   const submitData = async (e) => {
     e.preventDefault();
-    
-    // Basic form validation
-    if (!name || !phone || !email || !title || !desc || !file) {
-      enqueueSnackbar("Please fill all fields", { variant: "warning" });
-      return;
-    }
-    
     setBtn(false);
     const formData = new FormData();
 
@@ -35,10 +28,11 @@ export default function Post() {
     formData.append("title", title);
     formData.append("description", desc);
     formData.append("file", file);
+    formData.append("location", location); // Append location to formData
 
     await axios
       .post(`${api}/item`, formData, {
-        headers: { "Content-Type": "multipart/form-data" }
+        headers: { "Content-Type": "multipart/form-data" },
       })
       .then(() => {
         enqueueSnackbar("Item Posted Successfully", { variant: "success" });
@@ -49,14 +43,6 @@ export default function Post() {
         enqueueSnackbar("Error: " + (err.response?.data?.message || "Something went wrong"), { variant: "error" });
         setBtn(true);
       });
-  };
-
-  const handleHover = (id) => {
-    setIsHovered(id);
-  };
-
-  const handleLeave = () => {
-    setIsHovered(null);
   };
 
   return (
@@ -127,18 +113,19 @@ export default function Post() {
                 className={title ? 'has-value' : ''}
               />
             </div>
-            
-            <div className="input-container"
-                onMouseEnter={() => handleHover('desc')} 
-                onMouseLeave={handleLeave}>
-              <label htmlFor="desc" className={isHovered === 'desc' ? 'label-active' : ''}>Item Description </label>
-              <textarea 
-                id="desc"
-                placeholder="Provide detailed information about the item (color, brand, where found, etc.)"
-                onChange={(e) => setDesc(e.target.value)} 
-                value={desc}
-                className={desc ? 'has-value' : ''}
-              ></textarea>
+            <div className="input-container">
+              <label htmlFor="">Location Where Item Was Found</label>{" "}
+              <input
+                type="text"
+                value={location}
+                onChange={(e) => setLocation(e.target.value)}
+              />
+            </div>
+            <div className="input-container">
+              <label htmlFor="">Description </label>{" "}
+              <textarea onChange={(e) => setDesc(e.target.value)} value={desc}>
+                {desc}
+              </textarea>
             </div>
             
             <div className="input-container file-container"
@@ -156,16 +143,13 @@ export default function Post() {
                 {file && <span className="file-selected">✓ Image selected</span>}
               </div>
             </div>
-            
-            <div className="input-container button-container">
+            <div className="input-container">
               {btn ? (
                 <button type="submit" className="submitbtn" onClick={submitData}>
-                  <span className="btn-icon">📤</span> Post Item
+                  Post
                 </button>
               ) : (
-                <button className="submitbtn submitting">
-                  <span className="loading-spinner"></span> Posting...
-                </button>
+                <button className="submitbtn">Posting...</button>
               )}
             </div>
           </form>
