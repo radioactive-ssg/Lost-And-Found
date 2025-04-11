@@ -21,18 +21,18 @@ function Navbar() {
     <nav>
       <NavLink to="/"><img src={logo} alt="" /></NavLink>
       {/* <ul style={{ width: `${width}` }}> */}
-      <ul className={cls}>
-        <li>
-          <a href="/">Home</a>
+      <ul className={cls} >
+        <li className="nav-link">
+          <NavLink to="/">Home</NavLink>
         </li>
-        <li>
+        <li className="nav-link">
           <NavLink to="/find">Find item</NavLink>
         </li>
-        <li>
+        <li className="nav-link">
           <NavLink to="/post">Post item</NavLink>
         </li>
-        <li>
-          <a href="/#about">About us</a>
+        <li className="nav-link">
+          <NavLink to="/about">About us</NavLink>
         </li>
       </ul>
       {active ? (
