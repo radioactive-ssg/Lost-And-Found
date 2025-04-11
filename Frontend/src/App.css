@@ -657,115 +657,234 @@ a{
   }
 /* -----------------------------------Post item page ----------------------------- */
 
-#postItem section{
+ /* Enhanced Post Page CSS */
+
+/* Main Section */
+#postItem section {
     margin-top: 70px;
     width: 100vw;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    padding: 0 20px;
 }
-.form-container{
-    width:600px;
-    border: 2px solid rgb(107, 105, 105);
+
+
+.lfh1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: rgb(51, 214, 255);
+    margin-bottom: 1.5rem;
+    text-align: center;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+/* Form Container */
+.form-container {
+    margin-top: 10px;
+    margin-bottom: 20px;
+    width: 600px;
+    max-width: 100%;
+    border: 2px solid rgba(107, 105, 105, 0.7);
     border-width: 3px;
-    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-    /* height: 40vw; */
-    /* background-color: red; */
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15), 
+                0 10px 15px rgba(0, 0, 0, 0.1),
+                0 5px 10px rgba(0, 0, 0, 0.05);
+    padding: 30px;
     color: rgb(255, 254, 254);
     display: flex;
     justify-content: center;
     flex-direction: column;
     align-items: center;
     border-radius: 20px;
+    background: linear-gradient(145deg, rgba(22, 22, 22, 0.98), rgba(16, 17, 16, 0.95));
+    backdrop-filter: blur(10px);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
-.form-container h2{
-    text-align: start;
-    width: 500px;
-    font-size: 1.3rem;
+
+.form-container:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2), 
+                0 15px 20px rgba(0, 0, 0, 0.15),
+                0 7px 15px rgba(0, 0, 0, 0.1);
+}
+
+.form-container h2 {
+    text-align: center;
+    width: 100%;
+    font-size: 1.5rem;
     font-weight: 600;
-    margin-bottom: 20px;
-    color: black;
+    margin-bottom: 25px;
+    color: var(--yellow);
+    letter-spacing: 0.5px;
+    position: relative;
+    padding-bottom: 15px;
 }
-.form{
+
+.form-container h2:after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    transform: translateX(-50%);
+    height: 3px;
+    width: 80px;
+    background: var(--yellow);
+    border-radius: 2px;
+}
+
+/* Form */
+.form {
     width: 500px;
+    max-width: 100%;
     display: flex;
     flex-direction: column;
 }
-.input-container{
-position: relative;
-width: 500px;
+
+/* Input Containers */
+.input-container {
+    position: relative;
+    width: 500px;
+    max-width: 100%;
+    margin-bottom: 22px;
 }
-.form input, .submitbtn{
+
+/* Input Fields */
+.form input, .submitbtn {
     margin-bottom: 20px;
-    height: 40px;
-    border-radius: 8px;
-    border: 2px solid gray;
+    height: 45px;
+    border-radius: 10px;
+    border: 2px solid rgba(128, 128, 128, 0.6);
     outline: none;
-    width: 500px;
-    background-color: black;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
     color: white;
-    padding: 0 10px;
-    transition: .15s;
-}
-.form textarea{
-    height: 60px;
-    width: 500px;
-    border-radius: 8px;
-    margin-bottom: 10px;
-    border: 2px solid gray;
-    outline: none;
-    background-color: black;
-    color: white;
-    padding: 5px 10px;
-}
-.form label{
-    /* position: absolute; */
-    color:rgb(222, 221, 221);
-    top: -10px;
-    left: 15px;
-    background-color: rgb(16, 17, 16);
-    padding: 0 4px;
-    border-radius: 5px;
-}
-.submitbtn{
-    background-color: var(--yellow);
+    padding: 0 15px;
+    transition: all 0.3s ease;
     font-size: 1rem;
+}
+
+.form textarea {
+    height: 80px;
+    width: 100%;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    border: 2px solid rgba(128, 128, 128, 0.6);
+    outline: none;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 12px 15px;
+    font-size: 1rem;
+    font-family: inherit;
+    transition: all 0.3s ease;
+    resize: vertical;
+    min-height: 80px;
+    max-height: 200px;
+}
+
+/* Label */
+.form label {
+    color: rgb(222, 221, 221);
+    background-color: rgb(16, 17, 16);
+    padding: 0 10px;
+    border-radius: 5px;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+    display: inline-block;
+    margin-bottom: 8px;
+    font-weight: 500;
+}
+
+/* Focus States */
+.form input:focus, .form textarea:focus {
+    border: 2px solid var(--yellow);
+    box-shadow: 0 0 5px rgba(255, 215, 0, 0.4);
+}
+
+.input-container:focus-within label {
+    color: var(--yellow);
     font-weight: 600;
-    border: var(--yellow);
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    color: black;
+}
+
+.input-container label:hover {
+    color: var(--yellow);
     cursor: pointer;
 }
-.form input[type=file]{
-    height: 40px;
-    padding: 8px;
 
-}
-.form input:focus, .form textarea:focus{
-    border: 2px solid var(--yellow);
-}
-.input-container label:hover{
-    color: var(--yellow);
-}
-.submitbtn:hover{
-    background-color: skyblue;
+/* Submit Button */
+.submitbtn {
+    background: linear-gradient(145deg, rgb(97, 200, 240), #052ea1);
+    font-size: 1.1rem;
+    font-weight: 600;
+    border: none;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: black;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 170, 255, 0.859);
+    transition: all 0.3s ease;
 }
 
+.submitbtn:hover {
+    background: linear-gradient(145deg, rgb(255, 255, 255), #5cb8e6);
+    box-shadow: 0 6px 20px rgba(0, 204, 255, 0.4);
+    transform: translateY(-2px);
+}
+
+.submitbtn:active {
+    transform: translateY(1px);
+    box-shadow: 0 2px 10px rgba(135, 206, 235, 0.3);
+}
+
+/* File Input */
+.form input[type=file] {
+    height: auto;
+    padding: 12px;
+    cursor: pointer;
+    background-color: rgba(0, 0, 0, 0.6);
+    border: 2px dashed rgba(128, 128, 128, 0.6);
+}
+
+.form input[type=file]:hover {
+    border-color: var(--yellow);
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+/* Responsive Design */
+@media (max-width: 650px) {
+    .form-container {
+        width: 100%;
+        padding: 20px 15px;
+    }
+    
+    .form, .input-container {
+        width: 100%;
+    }
+    
+    .form-container h2 {
+        font-size: 1.3rem;
+    }
+    
+    .lfh1 {
+        font-size: 2rem;
+    }
+}
 /* ------------------------------------details page------------------------ */
 #detailspage section{
-    margin-top: 70px;
+    margin-top: 400px;
     /* min-height: 90vh; */
     display: flex;
     justify-content: center;
+    
 
 }
 .details-card{
-    margin-top: 10px;
-    color: white;
-    border: 2px solid white;
+    margin-top: 20px;
+    color: rgb(0, 0, 0);
+    border: 2px solid rgb(255, 255, 255);
     width: 450px;
     padding: 20px;
     border-radius: 10px;
@@ -776,14 +895,15 @@ width: 500px;
     display: flex;
     justify-content: center;
     margin-bottom: 20px;
+    margin-top: 10%;
 }
 .details-card .img-container img{
-     width: 400px;
+    width: 400px;
     height: 350px;
     object-fit: cover;
     border-radius: 10px;
 }
-.details-card h1{
+.details-card h2{
     text-align: center;
     margin: 12px 0;
 }
@@ -799,7 +919,7 @@ width: 500px;
     padding: 8px 20px;
     /* width: 100px;
     height: 35px; */
-    background-color: yellow;
+    background-color: rgb(0, 179, 255);
     margin: 0 10px;
     color: black;
     display: flex;
@@ -818,12 +938,12 @@ margin: 12px 0;
 }
 .details-container p{
     text-align: start;
-    color: rgba(255, 255, 255, 0.95);
+    color: black
 }
 .details-container p:nth-child(2){
-    color: var(--yellow);}
+    color: black;}
 .desc p{
-    text-align: justify;
+    text-align: start;
     
 }
 
@@ -835,9 +955,7 @@ margin: 12px 0;
 
 
 @media only screen and (max-width: 750px) {
-    .particle-container{
-        /* display: none; */
-    }
+    
     nav img{
         height: 40px;
         width: 40px;
@@ -854,8 +972,9 @@ margin: 12px 0;
     transition: 1s;
 }
 .menu{
-    color:var(--yellow);
+    color:black;
     scale: 1.5;
+    cursor: pointer;
 }
 .close{
     color: black;
@@ -962,6 +1081,7 @@ nav{
     border-radius: 20px;
   }
 }
+
 @media only screen and (max-height: 400px) {
 html::-webkit-scrollbar{
 display: none;

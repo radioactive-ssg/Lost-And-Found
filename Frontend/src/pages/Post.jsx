@@ -12,14 +12,21 @@ export default function Post() {
   const [title, setTitle] = useState("");
   const [desc, setDesc] = useState("");
   const [file, setFile] = useState("");
-  const [btn,setBtn]=useState(true)
+  const [btn, setBtn] = useState(true);
+  const [isHovered, setIsHovered] = useState(null);
   const navigate = useNavigate();
   const { enqueueSnackbar } = useSnackbar();
 
   const submitData = async (e) => {
-
     e.preventDefault();
-    setBtn(false)
+    
+    // Basic form validation
+    if (!name || !phone || !email || !title || !desc || !file) {
+      enqueueSnackbar("Please fill all fields", { variant: "warning" });
+      return;
+    }
+    
+    setBtn(false);
     const formData = new FormData();
 
     formData.append("name", name);
@@ -29,7 +36,7 @@ export default function Post() {
     formData.append("description", desc);
     formData.append("file", file);
 
-      await axios
+    await axios
       .post(`${api}/item`, formData, {
         headers: { "Content-Type": "multipart/form-data" }
       })
@@ -39,76 +46,131 @@ export default function Post() {
       })
       .catch((err) => {
         console.log(err);
-        enqueueSnackbar("Error", { variant: "error" });
+        enqueueSnackbar("Error: " + (err.response?.data?.message || "Something went wrong"), { variant: "error" });
         setBtn(true);
-        
       });
   };
+
+  const handleHover = (id) => {
+    setIsHovered(id);
+  };
+
+  const handleLeave = () => {
+    setIsHovered(null);
+  };
+
   return (
     <main id="postItem">
       <Navbar />
       <section>
         <h1 className="lfh1">Post Found Item</h1>
+        <div className="page-description">
+          Help reunite lost items with their owners by providing detailed information.
+        </div>
+
         <div className="form-container">
-          <h2>Please fill all the required fields</h2>
+          <h2>📋 Item Information Form</h2>
+          
           <form className="form" encType="multipart/form-data">
-            <div className="input-container">
-              <label htmlFor="">Name </label>{" "}
+            <div className="input-container" 
+                onMouseEnter={() => handleHover('name')} 
+                onMouseLeave={handleLeave}>
+              <label htmlFor="name" className={isHovered === 'name' ? 'label-active' : ''}>Full Name </label>
               <input
                 type="text"
+                id="name"
+                placeholder="Enter your full name"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
+                className={name ? 'has-value' : ''}
               />
             </div>
-            <div className="input-container">
-              <label htmlFor="">Email </label>{" "}
+            
+            <div className="input-container"
+                onMouseEnter={() => handleHover('email')} 
+                onMouseLeave={handleLeave}>
+              <label htmlFor="email" className={isHovered === 'email' ? 'label-active' : ''}>Email Address </label>
               <input
                 type="email"
+                id="email"
+                placeholder="Enter your email address"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
+                className={email ? 'has-value' : ''}
               />
             </div>
-            <div className="input-container">
-              <label htmlFor="">Phone </label>{" "}
+            
+            <div className="input-container"
+                onMouseEnter={() => handleHover('phone')} 
+                onMouseLeave={handleLeave}>
+              <label htmlFor="phone" className={isHovered === 'phone' ? 'label-active' : ''}>Phone Number </label>
               <input
                 type="tel"
+                id="phone"
+                placeholder="Enter your contact number"
                 value={phone}
                 onChange={(e) => setPhone(e.target.value)}
+                className={phone ? 'has-value' : ''}
               />
             </div>
-            <div className="input-container">
-              <label htmlFor="">Title </label>{" "}
+            
+            <div className="input-container"
+                onMouseEnter={() => handleHover('title')} 
+                onMouseLeave={handleLeave}>
+              <label htmlFor="title" className={isHovered === 'title' ? 'label-active' : ''}>Item Title </label>
               <input
-                type="Text"
+                type="text"
+                id="title"
+                placeholder="Brief name of the item you found"
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
+                className={title ? 'has-value' : ''}
               />
             </div>
-            <div className="input-container">
-              <label htmlFor="">Description </label>{" "}
-              <textarea onChange={(e) => setDesc(e.target.value)} value={desc}>
-                {desc}
-              </textarea>
+            
+            <div className="input-container"
+                onMouseEnter={() => handleHover('desc')} 
+                onMouseLeave={handleLeave}>
+              <label htmlFor="desc" className={isHovered === 'desc' ? 'label-active' : ''}>Item Description </label>
+              <textarea 
+                id="desc"
+                placeholder="Provide detailed information about the item (color, brand, where found, etc.)"
+                onChange={(e) => setDesc(e.target.value)} 
+                value={desc}
+                className={desc ? 'has-value' : ''}
+              ></textarea>
             </div>
-            <div className="input-container">
-              <input
-                type="file"
-                accept="images/*"
-                onChange={(e) => setFile(e.target.files[0])}
-                name="file"
-              />
+            
+            <div className="input-container file-container"
+                onMouseEnter={() => handleHover('file')} 
+                onMouseLeave={handleLeave}>
+              <label htmlFor="file" className={isHovered === 'file' ? 'label-active' : ''}>Upload Item Image </label>
+              <div className="file-input-wrapper">
+                <input
+                  type="file"
+                  id="file"
+                  accept="image/*"
+                  onChange={(e) => setFile(e.target.files[0])}
+                  name="file"
+                />
+                {file && <span className="file-selected">✓ Image selected</span>}
+              </div>
             </div>
-            <div className="input-container">
-            {btn?
-              (<button type="submit" className="submitbtn" onClick={submitData}>
-                Post
-              </button>) : (<button className="submitbtn">
-                Posting...
-              </button>)}
+            
+            <div className="input-container button-container">
+              {btn ? (
+                <button type="submit" className="submitbtn" onClick={submitData}>
+                  <span className="btn-icon">📤</span> Post Item
+                </button>
+              ) : (
+                <button className="submitbtn submitting">
+                  <span className="loading-spinner"></span> Posting...
+                </button>
+              )}
             </div>
           </form>
         </div>
       </section>
-    </main>
+      </main>
   );
 }

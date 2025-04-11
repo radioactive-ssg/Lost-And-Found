@@ -24,6 +24,8 @@ function Find() {
 //    left:"50%",
 //    transform:"translate(-50%,-50%)"
 //  };
+
+
  useEffect(()=>{
    axios
      .get(`${api}/item`)

@@ -5,7 +5,7 @@ import EmailIcon from "@mui/icons-material/Email";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import { api } from "../config";
-import HashLoader from "react-spinners/HashLoader";
+import LoadingIcon from "../components/LoadingIcon";
 import noimg from "../assets/no-image.png";
 
 function Details() {
@@ -14,14 +14,14 @@ function Details() {
   const [image, setImage] = useState("");
   const { id } = useParams();
 
-  const override: CSSProperties = {
-    display: "block",
-    borderColor: "#fdf004",
-    position: "absolute",
-    top: "50%",
-    left: "50%",
-    transform: "translate(-50%,-50%)",
-  };
+  // const override: CSSProperties = {
+  //   display: "block",
+  //   borderColor: "#fdf004",
+  //   position: "absolute",
+  //   top: "50%",
+  //   left: "50%",
+  //   transform: "translate(-50%,-50%)",
+  // };
 
   useEffect(() => {
     setLoading(true);
@@ -52,14 +52,15 @@ function Details() {
       <Navbar />
       <section>
         {loading ? (
-          <HashLoader
-            color="#fdf004"
-            loading={loading}
-            cssOverride={override}
-            size={50}
-            aria-label="Loading Spinner"
-            data-testid="loader"
-          />
+          // <HashLoader
+          //   color="#fdf004"
+          //   loading={loading}
+          //   cssOverride={override}
+          //   size={50}
+          //   aria-label="Loading Spinner"
+          //   data-testid="loader"
+          // />
+          <LoadingIcon />
         ) : (
           <div className="details-card">
             <div className="img-container">
@@ -74,7 +75,7 @@ function Details() {
                 <EmailIcon /> Email
               </a>
             </div>
-            <h1>{item.title}</h1>
+            <h2>{item.title}</h2>
             <div className="details-container">
               <p>Founder</p>
               <p>{item.name}</p>
