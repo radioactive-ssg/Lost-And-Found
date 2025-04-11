@@ -18,6 +18,10 @@ const itemSchema = mongoose.Schema(
         type:String,
         required: true,
     },
+    location:{
+        type:String,
+        required: false,
+    },
     description:{
         type:String,
         required: true,
@@ -31,4 +35,4 @@ const itemSchema = mongoose.Schema(
   }
 );
 
-export const Item = mongoose.model("itemSchema", itemSchema);
+export const Item = mongoose.model("itemschemas", itemSchema);
