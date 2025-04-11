@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { useSnackbar } from "notistack";
 import { api } from "../config";
 
+
 export default function Post() {
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
@@ -13,12 +14,20 @@ export default function Post() {
   const [desc, setDesc] = useState("");
   const [file, setFile] = useState("");
   const [location, setLocation] = useState(""); // New state for location
+  const [isHovered, setIsHovered] = useState(null);
   const [btn, setBtn] = useState(true);
   const navigate = useNavigate();
   const { enqueueSnackbar } = useSnackbar();
 
   const submitData = async (e) => {
     e.preventDefault();
+
+    // Basic form validation
+    if (!name || !phone || !email || !title || !desc || !file) {
+      enqueueSnackbar("Please fill all fields", { variant: "warning" });
+      return;
+    }
+
     setBtn(false);
     const formData = new FormData();
 
@@ -44,6 +53,16 @@ export default function Post() {
         setBtn(true);
       });
   };
+
+
+  const handleHover = (id) => {
+    setIsHovered(id);
+  };
+
+  const handleLeave = () => {
+    setIsHovered(null);
+  };
+
 
   return (
     <main id="postItem">
@@ -143,13 +162,15 @@ export default function Post() {
                 {file && <span className="file-selected">✓ Image selected</span>}
               </div>
             </div>
-            <div className="input-container">
+            <div className="input-container button-container">
               {btn ? (
                 <button type="submit" className="submitbtn" onClick={submitData}>
-                  Post
+                  <span className="btn-icon">📤</span> Post Item
                 </button>
               ) : (
-                <button className="submitbtn">Posting...</button>
+                <button className="submitbtn submitting">
+                  <span className="loading-spinner"></span> Posting...
+                </button>
               )}
             </div>
           </form>
