@@ -12,14 +12,14 @@ export default function Post() {
   const [title, setTitle] = useState("");
   const [desc, setDesc] = useState("");
   const [file, setFile] = useState("");
-  const [btn,setBtn]=useState(true)
+  const [location, setLocation] = useState(""); // New state for location
+  const [btn, setBtn] = useState(true);
   const navigate = useNavigate();
   const { enqueueSnackbar } = useSnackbar();
 
   const submitData = async (e) => {
-
     e.preventDefault();
-    setBtn(false)
+    setBtn(false);
     const formData = new FormData();
 
     formData.append("name", name);
@@ -28,10 +28,11 @@ export default function Post() {
     formData.append("title", title);
     formData.append("description", desc);
     formData.append("file", file);
+    formData.append("location", location); // Append location to formData
 
-      await axios
+    await axios
       .post(`${api}/item`, formData, {
-        headers: { "Content-Type": "multipart/form-data" }
+        headers: { "Content-Type": "multipart/form-data" },
       })
       .then(() => {
         enqueueSnackbar("Item Posted Successfully", { variant: "success" });
@@ -41,9 +42,9 @@ export default function Post() {
         console.log(err);
         enqueueSnackbar("Error", { variant: "error" });
         setBtn(true);
-        
       });
   };
+
   return (
     <main id="postItem">
       <Navbar />
@@ -85,6 +86,14 @@ export default function Post() {
               />
             </div>
             <div className="input-container">
+              <label htmlFor="">Location Where Item Was Found</label>{" "}
+              <input
+                type="text"
+                value={location}
+                onChange={(e) => setLocation(e.target.value)}
+              />
+            </div>
+            <div className="input-container">
               <label htmlFor="">Description </label>{" "}
               <textarea onChange={(e) => setDesc(e.target.value)} value={desc}>
                 {desc}
@@ -99,12 +108,13 @@ export default function Post() {
               />
             </div>
             <div className="input-container">
-            {btn?
-              (<button type="submit" className="submitbtn" onClick={submitData}>
-                Post
-              </button>) : (<button className="submitbtn">
-                Posting...
-              </button>)}
+              {btn ? (
+                <button type="submit" className="submitbtn" onClick={submitData}>
+                  Post
+                </button>
+              ) : (
+                <button className="submitbtn">Posting...</button>
+              )}
             </div>
           </form>
         </div>
