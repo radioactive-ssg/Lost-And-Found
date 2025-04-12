@@ -1,32 +1,13 @@
-import { useState ,useEffect} from "react";
-import { api } from "../config";
-import noImage from "../assets/no-image.png"
-import axios from "axios";
-
+import noImage from "../assets/no-image.png";
 
 export default function Itemcard(props) {
-  const [image, setImage] = useState(noImage);
-  useEffect(() => {
-    axios
-      .get(`${api}/files/${props.image}`)
-      .then((res) => {
-        setImage(`${api}/files/${props.image}`);
-      })
-      .catch((error) => {
-        setImage(noImage);
-      });
-
-
-  },[props.image]);
-
-
   return (
     <a href={"/find/details/" + props.id} data-aos="fade-up">
       <div className="card">
         <div className="card-img">
           <img
-            src={image}
-            alt=""
+            src={props.image || noImage} // Use the Cloudinary URL or fallback to noImage
+            alt={props.title || "No Image Available"}
           />
         </div>
         <div className="card-desc">
