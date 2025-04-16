@@ -6,7 +6,7 @@ function Home(){
         <Navbar />
         
 
-<div className="container">
+  <div className="container">
     
     
     <div className="headline">Lost Something? Found Something?</div>
@@ -83,4 +83,5 @@ function Home(){
       </main>
     );
 } 
+
 export default Home; 

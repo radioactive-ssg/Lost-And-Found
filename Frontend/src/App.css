@@ -165,6 +165,14 @@ nav ul li a{
       height: 100%;
       
   }
+
+  .img-container-b{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    
+}
   
   .bg-image {
     position: absolute;
@@ -392,7 +400,7 @@ footer a:hover{
   .background-image {
     position: absolute;
     top: 85px;
-    left: 150px;
+    left: 10vw;
     width: 80%;
     height: 85%;
     background-image: url('/src/assets/manit.png'); 
@@ -657,115 +665,389 @@ a{
   }
 /* -----------------------------------Post item page ----------------------------- */
 
-#postItem section{
-    margin-top: 70px;
-    width: 100vw;
+ /* Enhanced Post Page CSS */
+
+/* Main Section */
+/* Reset and Base Styles */
+/* Reset and Base Styles */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f8f9fa;
+    color: #333;
+    line-height: 1.6;
+  }
+  
+  /* Section Styles */
+  #postItem section {
+    margin: 2rem auto;
+    width: 100%;
+    max-width: 1200px;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-}
-.form-container{
-    width:600px;
-    border: 2px solid rgb(107, 105, 105);
-    border-width: 3px;
-    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-    /* height: 40vw; */
-    /* background-color: red; */
-    color: rgb(255, 254, 254);
+    padding: 0 20px;
+  }
+  
+  /* Heading Styles */
+  .lfh1 {
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: #2a69ac;
+    margin-bottom: 1rem;
+    text-align: center;
+  }
+  
+  .page-description {
+    font-size: 1.1rem;
+    color: #555;
+    text-align: center;
+    margin-bottom: 2rem;
+    max-width: 800px;
+    padding: 0 15px;
+  }
+  
+  /* Form Container */
+  .form-container {
+    width: 100%;
+    max-width: 600px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05), 
+                0 5px 10px rgba(0, 0, 0, 0.02);
+    padding: 2rem;
+    color: #333;
     display: flex;
     justify-content: center;
     flex-direction: column;
     align-items: center;
-    border-radius: 20px;
-}
-.form-container h2{
-    text-align: start;
-    width: 500px;
-    font-size: 1.3rem;
+    border-radius: 16px;
+    background: #fff;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    margin: 0 auto 2rem;
+    overflow: hidden; /* Ensures nothing exceeds container boundaries */
+  }
+  
+  .form-container:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1), 
+                0 8px 15px rgba(0, 0, 0, 0.05);
+  }
+  
+  .form-container h2 {
+    text-align: center;
+    width: 100%;
+    font-size: 1.5rem;
     font-weight: 600;
-    margin-bottom: 20px;
-    color: black;
-}
-.form{
-    width: 500px;
+    margin-bottom: 1.5rem;
+    color: #2a69ac;
+    letter-spacing: 0.5px;
+    position: relative;
+    padding-bottom: 15px;
+  }
+  
+  .form-container h2:after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    transform: translateX(-50%);
+    height: 3px;
+    width: 80px;
+    background: #3498db;
+    border-radius: 2px;
+  }
+  
+  /* Form Styles */
+  .form {
+    width: 100%;
     display: flex;
     flex-direction: column;
-}
-.input-container{
-position: relative;
-width: 500px;
-}
-.form input, .submitbtn{
-    margin-bottom: 20px;
-    height: 40px;
+  }
+  
+  /* Input Containers */
+  .input-container {
+    position: relative;
+    width: 100%;
+    margin-bottom: 1.5rem;
+    padding: 0 8px; /* Add padding to prevent touching boundaries */
+  }
+  
+  /* Label Styles - Fixed to prevent touching boundaries */
+  .form label {
+    display: inline-block;
+    margin-bottom: 8px;
+    color: #4a5568;
+    font-weight: 500;
+    transition: color 0.3s ease;
+    padding: 0 4px; /* Add padding to prevent touching edge */
+  }
+  
+  .label-active {
+    color: #2a69ac !important;
+  }
+  
+  /* Input Fields */
+  .form input, 
+  .form textarea, 
+  .submitbtn {
+    width: 100%;
+    padding: 12px 15px;
     border-radius: 8px;
-    border: 2px solid gray;
-    outline: none;
-    width: 500px;
-    background-color: black;
-    color: white;
-    padding: 0 10px;
-    transition: .15s;
-}
-.form textarea{
-    height: 60px;
-    width: 500px;
-    border-radius: 8px;
-    margin-bottom: 10px;
-    border: 2px solid gray;
-    outline: none;
-    background-color: black;
-    color: white;
-    padding: 5px 10px;
-}
-.form label{
-    /* position: absolute; */
-    color:rgb(222, 221, 221);
-    top: -10px;
-    left: 15px;
-    background-color: rgb(16, 17, 16);
-    padding: 0 4px;
-    border-radius: 5px;
-}
-.submitbtn{
-    background-color: var(--yellow);
+    border: 1px solid #d1d5db;
+    background-color: #fff;
+    color: #333;
     font-size: 1rem;
+    transition: all 0.3s ease;
+    max-width: 100%; /* Ensure inputs don't exceed container width */
+  }
+  
+  .form input {
+    height: 48px;
+  }
+  
+  .form textarea {
+    min-height: 100px;
+    max-height: 200px;
+    resize: vertical;
+    font-family: inherit;
+  }
+  
+  /* Focus States */
+  .form input:focus, 
+  .form textarea:focus {
+    outline: none;
+    border-color: #3498db;
+    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+  }
+  
+  .has-value {
+    border-color: #38a169;
+  }
+  
+  /* File Input Styling - Fixed to prevent overflow */
+  .file-input-wrapper {
+    position: relative;
+    width: 100%;
+    padding: 0;
+    overflow: hidden; /* Prevent content from overflowing */
+  }
+  
+  .form input[type="file"] {
+    width: 100%;
+    max-width: 100%;
+    padding: 10px;
+    background-color: #f7fafc;
+    border: 1px dashed #cbd5e0;
+    cursor: pointer;
+    font-size: 0.9rem; /* Smaller font size for mobile */
+  }
+  
+  .form input[type="file"]:hover {
+    border-color: #3498db;
+    background-color: #f0f9ff;
+  }
+  
+  .file-selected {
+    display: block;
+    margin-top: 5px;
+    color: #38a169;
+    font-size: 0.9rem;
+    word-break: break-word; /* Ensures long filenames wrap properly */
+  }
+  
+  /* Custom file input styling for better mobile display */
+  .custom-file-input {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    cursor: pointer;
+  }
+  
+  .custom-file-input input[type="file"] {
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+  }
+  
+  .custom-file-button {
+    padding: 10px 15px;
+    background-color: #f7fafc;
+    border: 1px dashed #cbd5e0;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    color: #4a5568;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+  }
+  
+  .custom-file-button:hover {
+    border-color: #3498db;
+    background-color: #f0f9ff;
+  }
+  
+  .file-name-display {
+    margin-top: 5px;
+    font-size: 0.85rem;
+    color: #4a5568;
+    word-break: break-word;
+  }
+  
+  /* Button Styles */
+  .submitbtn {
+    height: 50px;
+    background: linear-gradient(to right, #3498db, #2a69ac);
+    color: white;
     font-weight: 600;
-    border: var(--yellow);
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(52, 152, 219, 0.2);
+    font-size: 1rem;
     text-transform: uppercase;
     letter-spacing: 1px;
-    color: black;
-    cursor: pointer;
-}
-.form input[type=file]{
-    height: 40px;
-    padding: 8px;
-
-}
-.form input:focus, .form textarea:focus{
-    border: 2px solid var(--yellow);
-}
-.input-container label:hover{
-    color: var(--yellow);
-}
-.submitbtn:hover{
-    background-color: skyblue;
-}
-
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin: 0 8px; /* Add horizontal margin */
+  }
+  
+  .submitbtn:hover {
+    background: linear-gradient(to right, #2a69ac, #1e4b7a);
+    box-shadow: 0 6px 10px rgba(52, 152, 219, 0.3);
+    transform: translateY(-2px);
+  }
+  
+  .submitbtn:active {
+    transform: translateY(1px);
+    box-shadow: 0 2px 4px rgba(52, 152, 219, 0.2);
+  }
+  
+  .btn-icon {
+    font-size: 1.2rem;
+  }
+  
+  /* Loading State */
+  .submitting {
+    opacity: 0.8;
+    cursor: not-allowed;
+  }
+  
+  .loading-spinner {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    border-top-color: #fff;
+    animation: spin 1s ease-in-out infinite;
+    margin-right: 8px;
+  }
+  
+  @keyframes spin {
+    to { transform: rotate(360deg); }
+  }
+  
+  /* Placeholder styling */
+  ::placeholder {
+    color: #a0aec0;
+    opacity: 1;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .lfh1 {
+      font-size: 1.8rem;
+    }
+    
+    .form-container {
+      padding: 1.5rem;
+      width: 95%; /* Slightly reduced width on tablets */
+    }
+    
+    .form-container h2 {
+      font-size: 1.3rem;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    #postItem section {
+      padding: 0 10px;
+    }
+    
+    .lfh1 {
+      font-size: 1.6rem;
+      padding: 0 10px;
+    }
+    
+    .page-description {
+      font-size: 1rem;
+      padding: 0 12px;
+    }
+    
+    .form-container {
+      padding: 1.2rem 0.8rem; /* Reduced padding on mobile */
+      width: 92%; /* Further reduced width on mobile */
+      border-radius: 12px;
+    }
+    
+    /* Increase spacing between form elements on mobile */
+    .input-container {
+      margin-bottom: 1.2rem;
+      padding: 0 6px;
+    }
+    
+    .form input, 
+    .form textarea, 
+    .submitbtn {
+      font-size: 0.95rem;
+      padding: 10px 12px; /* Slightly reduced padding */
+    }
+    
+    .form label {
+      font-size: 0.95rem;
+      margin-bottom: 6px;
+      padding-left: 2px;
+    }
+    
+    /* Make file input more mobile-friendly */
+    .form input[type="file"] {
+      padding: 8px;
+      font-size: 0.85rem;
+    }
+    
+    /* Adjust button size on mobile */
+    .submitbtn {
+      height: 46px;
+      font-size: 0.95rem;
+      margin: 0 6px;
+    }
+  }
 /* ------------------------------------details page------------------------ */
 #detailspage section{
-    margin-top: 70px;
+    margin-top: 400px;
     /* min-height: 90vh; */
     display: flex;
     justify-content: center;
+    
 
 }
 .details-card{
-    margin-top: 10px;
-    color: white;
-    border: 2px solid white;
+    margin-top: 20px;
+    color: rgb(0, 0, 0);
+    border: 2px solid rgb(255, 255, 255);
     width: 450px;
     padding: 20px;
     border-radius: 10px;
@@ -776,14 +1058,15 @@ width: 500px;
     display: flex;
     justify-content: center;
     margin-bottom: 20px;
+    margin-top: 100px;
 }
 .details-card .img-container img{
-     width: 400px;
+    width: 400px;
     height: 350px;
     object-fit: cover;
     border-radius: 10px;
 }
-.details-card h1{
+.details-card h2{
     text-align: center;
     margin: 12px 0;
 }
@@ -799,7 +1082,7 @@ width: 500px;
     padding: 8px 20px;
     /* width: 100px;
     height: 35px; */
-    background-color: yellow;
+    background-color: rgb(0, 179, 255);
     margin: 0 10px;
     color: black;
     display: flex;
@@ -818,12 +1101,12 @@ margin: 12px 0;
 }
 .details-container p{
     text-align: start;
-    color: rgba(255, 255, 255, 0.95);
+    color: black
 }
 .details-container p:nth-child(2){
-    color: var(--yellow);}
+    color: black;}
 .desc p{
-    text-align: justify;
+    text-align: start;
     
 }
 
@@ -835,9 +1118,7 @@ margin: 12px 0;
 
 
 @media only screen and (max-width: 750px) {
-    .particle-container{
-        /* display: none; */
-    }
+    
     nav img{
         height: 40px;
         width: 40px;
@@ -854,8 +1135,9 @@ margin: 12px 0;
     transition: 1s;
 }
 .menu{
-    color:var(--yellow);
+    color:black;
     scale: 1.5;
+    cursor: pointer;
 }
 .close{
     color: black;
@@ -962,6 +1244,7 @@ nav{
     border-radius: 20px;
   }
 }
+
 @media only screen and (max-height: 400px) {
 html::-webkit-scrollbar{
 display: none;

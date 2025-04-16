@@ -1,11 +1,11 @@
-import { useState, useEffect, CSSProperties } from "react";
+import { useState, useEffect } from "react";
 import Navbar from "../components/Navbar";
 import CallIcon from "@mui/icons-material/Call";
 import EmailIcon from "@mui/icons-material/Email";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import { api } from "../config";
-import HashLoader from "react-spinners/HashLoader";
+import LoadingIcon from "../components/LoadingIcon";
 import noimg from "../assets/no-image.png";
 
 function Details() {
@@ -13,14 +13,14 @@ function Details() {
   const [loading, setLoading] = useState(false);
   const { id } = useParams();
 
-  const override: CSSProperties = {
-    display: "block",
-    borderColor: "#fdf004",
-    position: "absolute",
-    top: "50%",
-    left: "50%",
-    transform: "translate(-50%,-50%)",
-  };
+  // const override: CSSProperties = {
+  //   display: "block",
+  //   borderColor: "#fdf004",
+  //   position: "absolute",
+  //   top: "50%",
+  //   left: "50%",
+  //   transform: "translate(-50%,-50%)",
+  // };
 
   useEffect(() => {
     setLoading(true);
@@ -29,6 +29,8 @@ function Details() {
       .then((res) => {
         setItem(res.data);
         console.log(res.data);
+        console.log("Phone Number:", res.data.phoneno);
+        console.log("Email:", res.data.email);
         setLoading(false);
       })
       .catch((error) => {
@@ -43,14 +45,15 @@ function Details() {
       <Navbar />
       <section>
         {loading ? (
-          <HashLoader
-            color="#fdf004"
-            loading={loading}
-            cssOverride={override}
-            size={50}
-            aria-label="Loading Spinner"
-            data-testid="loader"
-          />
+          // <HashLoader
+          //   color="#fdf004"
+          //   loading={loading}
+          //   cssOverride={override}
+          //   size={50}
+          //   aria-label="Loading Spinner"
+          //   data-testid="loader"
+          // />
+          <LoadingIcon />
         ) : (
           <div className="details-card">
             <div className="img-container">
@@ -61,14 +64,14 @@ function Details() {
             </div>
 
             <div className="action-container">
-              <a href={`tel:${item.phoneno}`}>
+              <a href={item.phoneno ? `tel:${item.phoneno}` : "#"} onClick={(e) => !item.phoneno && e.preventDefault()}>
                 <CallIcon /> Call
               </a>
-              <a href={`mailto:${item.email}`}>
+              <a href={item.email ? `mailto:${item.email}` : "#"} onClick={(e) => !item.email && e.preventDefault()}>
                 <EmailIcon /> Email
               </a>
             </div>
-            <h1>{item.title}</h1>
+            <h2>{item.title}</h2>
             <div className="details-container">
               <p>Founder : </p>
               <p>{item.name}</p>
