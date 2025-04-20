@@ -591,8 +591,8 @@ a{
   }
   
   [data-loader='logo-circle'] {
-    width: 155px;
-    height: 155px;
+    width: 150px;
+    height: 150px;
     -webkit-animation: circle infinite .75s linear;
     -moz-animation: circle infinite .75s linear;
     -o-animation: circle infinite .75s linear;

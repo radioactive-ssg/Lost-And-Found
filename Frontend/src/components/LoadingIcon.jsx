@@ -20,8 +20,8 @@ const LoadingIcon = () => {
         src={logo}
         alt="Logo"
         style={{
-          width: "60px",
-          height: "60px",
+          width: "100px",
+          height: "100px",
           position: "absolute",
           top: "50%",
           left: "50%",
